@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no" />
+    <title>深夜豆浆</title>
+    <link rel="stylesheet" href="index.css">
+    <script src="index.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+    <script charset="utf-8" src="https://map.qq.com/api/js?v=2.exp&key=PYEBZ-NYOLR-FMQWZ-WYPOO-NZTNF-4QF6A"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+</head>
+
+<body>
+    
+    <div id="phoneBox">
+        <!-- 标题 -->
+        <div id="title_baner" id="test">
+            <div id="title">
+                <img src="image/title.png" alt="">
+            </div>
+        </div>
+
+        <!-- 内容 -->
+        <div id="content">
+            <!-- 音乐的按钮 -->
+            <div id="audio_button" v-bind:class="{'rotate': ifPlaying}" v-on:click="ifPlaying=!ifPlaying">
+                <audio loop src="music/music.mp3" id="audio" autoplay></audio>
+            </div>
+            <!-- 页面 -->
+            <div id="page">
+                <div id="page1" class="content_page current_page">
+                    <br><br><br><br><br>
+                    <img id="page1_img1" src="image/page1_title.png"></img>
+                    <br>
+                    <div id='page1_text2'>----深夜的酒不如深夜的豆浆!</div>
+                    <br>
+                    <img id="page1_img3" src="image/soya_bean_milk.jpg"></img>
+                    
+                </div>
+
+                <div id="page2" class="content_page"> 
+                    <br><br><br><br>
+                    <img id="page2_img1" src="image/page2_title.png"></img>
+                    <br>
+                    <img id="page2_img2" src="image/storefront_night.jpg"></img>
+                </div>  
+
+                <div id="page3" class="content_page">
+                    <br><br><br>
+                    <img id="page3_img1" src="image/page3_title.png"></img>
+                    <br><br><br><br>
+                    <div id="page3_box">
+                        <img id="page3_img2" class="rotate_in" src="image/ad1.jpg" onclick="javascript:window.open(this.src);"></img>
+                        <img id="page3_img3" class="rotate_in" src="image/ad3.jpg" onclick="javascript:window.open(this.src);"></img>
+                        <img id="page3_img4" class="rotate_in" src="image/ad2.jpg" onclick="javascript:window.open(this.src);"></img>
+                        <br>
+                        <img id="page3_img5" class="rotate_in" src="image/food1.jpg" onclick="javascript:window.open(this.src);"></img>
+                        <img id="page3_img6" class="rotate_in" src="image/food2.jpg" onclick="javascript:window.open(this.src);"></img>
+                        <img id="page3_img7" class="rotate_in" src="image/food3.jpg" onclick="javascript:window.open(this.src);"></img>
+                    </div>
+                </div>
+
+                <div id="page4" class="content_page">
+                    <br><br><br>
+                    <img id="page4_img1" src="image/page4_title.png"></img>
+                    <br>
+                    <img id="page4_img2" src="image/ad4.jpg" onclick="javascript:window.open(this.src);"></img>
+                    <br>
+                    <img id="page4_img3" src="image/menu.jpg" onclick="javascript:window.open(this.src);"></img>
+                </div>
+
+                <div id="page5" class="content_page"> 
+                    <br/><br/><br/>
+                    <div id='map_caption'>
+                        <img src="image/map_caption.png" alt=""/>
+                    </div>
+                    <br/><br/><br/>
+                    <div id='map_container'></div>
+                    <br/><br/><br/>
+                    <p id='text_below_map'>转发微信朋友圈集赞5个还可到店免费领取一份豆浆或健康油条</p>
+                </div>
+            </div>         
+        </div>
+        
+        <!-- 换页箭头 -->
+        <div id="turn_page_arrow" style="display: block;">
+            <img src="image/arrow.png" alt="下一页">
+        </div>
+    </div>
+
+    <script>
+        // vue.js
+        var audio = document.getElementById('audio');
+        var turn_page_arrow = document.getElementById('turn_page_arrow');
+        var vue = new Vue({
+            el: '#phoneBox',
+            data: {
+                ifPlaying: true,
+                ending: 5,
+                current_page_index: 1,
+                
+            },
+            methods: {
+                //向上翻页
+                lastPage: function(){
+                    if(vue.current_page_index == 1){
+                        console.log('到头了');
+                    }else{
+                        vue.current_page_index--;
+                        console.log('第' + vue.current_page_index + '页');
+                    }
+                },
+                //向下翻页
+                nextPage: function(){
+                    if(vue.current_page_index == vue.ending){
+                        console.log('到底了');
+                    }else{
+                        vue.current_page_index++;
+                        console.log('第' + vue.current_page_index + '页');
+                    }
+                }
+            },
+            watch: {
+                //监测播放状态
+                ifPlaying: function(val){
+                    if(audio != null){
+                        if(val){
+                            console.log("audio:play");
+                            audio.play();
+                        }else{
+                            console.log("audio:pause");
+                            audio.pause();
+                        }
+                    }
+                },
+                //换页
+                current_page_index: function(val){
+                    document.getElementsByClassName('current_page')[0].classList.remove('current_page')
+                    var current = document.getElementById("page"+val);
+                    current.classList.add('current_page');
+                    current.classList.add('in' + val);
+                    current.addEventListener('animationend', function(){
+                        this.classList.remove('in' + val);
+                    });
+                }
+            }
+        })
+
+        // 手指划屏事件
+        var start_point_Y, end_point_Y;
+        var slideDOM = document.getElementById('page');
+        slideDOM.addEventListener('touchstart',function(e){
+            start_point_Y = e.changedTouches[0].clientY;
+            console.log('start_point_Y:'+start_point_Y);
+        }, false);
+        slideDOM.addEventListener('touchend',function(e){
+            end_point_Y = e.changedTouches[0].clientY;
+            console.log('end_point_Y:'+end_point_Y);
+            console.log(e);
+            if(start_point_Y - end_point_Y > 20){
+                vue.nextPage();
+            }else if(start_point_Y - end_point_Y < -20){
+                vue.lastPage();
+            }else{
+                if(e.target){
+
+                }
+            }
+        }, false);
+
+        // 腾讯地图js
+        var citylocation, marker, map;
+        window.onload = function(){
+            console.log("onload");
+            //初始化地图函数  自定义函数名init
+            function init() {
+                console.log("map");
+                var center = new qq.maps.LatLng(23.094684,113.652384);
+                //定义map变量 调用 qq.maps.Map() 构造函数   获取地图显示容器
+                map = new qq.maps.Map(document.getElementById("map_container"), {
+                    center: center,      // 地图的中心地理坐标。
+                    zoom:100             // 地图的中心地理坐标。
+                });
+                citylocation = new qq.maps.CityService({
+                    complete : function(results){
+                        map.setCenter(results.detail.latLng);
+                        //设置marker标记
+                        marker = new qq.maps.Marker({
+                            map: map,
+                            position: results.detail.latLng,
+                            title: "深夜豆浆-中堂店",
+                        });
+                        var infoWin = new qq.maps.InfoWindow({
+                            map: map,
+                            content: "<h3 >深夜豆浆-中堂店</h3><br>广东省东莞市莞都商业广场B区2栋117号",
+                            position: center,
+                            zIndex: 10,
+                            visible: true
+                        });
+                    }
+                });
+                citylocation.searchCityByLatLng(center);
+                qq.maps.event.addListener(map, 'click', function(event) {
+                    window.location.href="https://3gimg.qq.com/lightmap/v1/marker/index.html?marker=coord%3A23.094684%2C113.652384%3Btitle%3A%E6%B7%B1%E5%A4%9C%E8%B1%86%E6%B5%86-%E4%B8%AD%E5%A0%82%E5%BA%97%3Baddr&key=PYEBZ-NYOLR-FMQWZ-WYPOO-NZTNF-4QF6A&referer=tengxun&ch=uri-api&ADTAG=uri-api.other ";
+                });
+            }
+            //调用初始化函数地图
+            init();
+        }
+        
+    </script>
+</body>
+
+</html>

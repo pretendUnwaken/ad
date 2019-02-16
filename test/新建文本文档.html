@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+<!-- <meta http-equiv="Content-Type" content="text/html; charset=utf-8"> -->
+<title>简单地图</title>
+<!-- <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/> -->
+<style type="text/css">
+html,body{
+    width:100%;
+    height:100%;
+}
+/* *{
+    margin:0px;
+    padding:0px;
+} */
+/* body, button, input, select, textarea {
+    font: 12px/16px Verdana, Helvetica, Arial, sans-serif;
+}
+p{
+    width:603px;
+    padding-top:3px;
+    overflow:hidden;
+}
+.btn{
+    width:142px;
+} */
+/* a{
+    style: none;
+} */
+#container{
+    width:300px;
+    min-height:200px;
+}
+</style>
+<script charset="utf-8" src="https://map.qq.com/api/js?v=2.exp&key=PYEBZ-NYOLR-FMQWZ-WYPOO-NZTNF-4QF6A"></script>
+<script>
+var citylocation, marker, map;
+window.onload = function(){
+    //初始化地图函数  自定义函数名init
+    function init() {
+         var center = new qq.maps.LatLng(23.094684,113.652384);
+        //定义map变量 调用 qq.maps.Map() 构造函数   获取地图显示容器
+         map = new qq.maps.Map(document.getElementById("container"), {
+            center: center,      // 地图的中心地理坐标。
+            zoom:100             // 地图的中心地理坐标。
+        });
+        // citylocation = new qq.maps.CityService({
+        //     complete : function(results){
+        //         map.setCenter(results.detail.latLng);
+        //         if (marker != null) {
+        //            // marker.setMap(null);
+        //         }
+        //         //设置marker标记
+        //         marker = new qq.maps.Marker({
+        //             map: map,
+        //             position: results.detail.latLng,
+        //             title: "深夜豆浆-中堂店",
+        //         });
+        //         var infoWin = new qq.maps.InfoWindow({
+        //             map: map,
+        //             content: "<h3 >深夜豆浆-中堂店</h3><br>广东省东莞市莞都商业广场B区2栋117号",
+        //             position: center,
+        //             zIndex: 10,
+        //             visible: true
+        //         });
+        //     }
+        // });
+        // citylocation.searchCityByLatLng(center);
+        // qq.maps.event.addListener(map, 'click', function(event) {
+        //     window.location.href="https://3gimg.qq.com/lightmap/v1/marker/index.html?marker=coord%3A23.094684%2C113.652384%3Btitle%3A%E6%B7%B1%E5%A4%9C%E8%B1%86%E6%B5%86-%E4%B8%AD%E5%A0%82%E5%BA%97%3Baddr&key=PYEBZ-NYOLR-FMQWZ-WYPOO-NZTNF-4QF6A&referer=tengxun&ch=uri-api&ADTAG=uri-api.other ";
+        // });
+    }
+    //调用初始化函数地图
+    init();
+}
+</script>
+</head>
+<body>
+<a href="https://3gimg.qq.com/lightmap/v1/marker/index.html?marker=coord%3A23.094684%2C113.652384%3Btitle%3A%E6%B7%B1%E5%A4%9C%E8%B1%86%E6%B5%86-%E4%B8%AD%E5%A0%82%E5%BA%97%3Baddr&key=PYEBZ-NYOLR-FMQWZ-WYPOO-NZTNF-4QF6A&referer=tengxun&ch=uri-api&ADTAG=uri-api.other ">
+<!--   定义地图显示容器   -->
+<div id="container"></div>
+</a>
+</body>
+</html>

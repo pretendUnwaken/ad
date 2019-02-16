@@ -1,0 +1,337 @@
+html, body , #phoneBox{
+    width:100%;
+    height:100%;
+    margin:0 ;
+    padding:0 ;
+    overflow:hidden; 
+}
+#phoneBox{
+    position: relative;
+}
+/* 标题栏 */
+#title_baner {
+    display: block!important;
+    height: 40px;
+    line-height: 40px;
+    background: #000;
+    color: #fff;
+    text-align: center;
+    border-left: 1px solid #F6F6F6;
+    border-right: 1px solid #F6F6F6;
+}
+/* 标题 */
+#title_baner #title {
+    overflow: hidden;
+    white-space: nowrap;
+    margin-top: 1px;
+}
+#title_baner #title img{
+    margin-top: 7px;
+}
+/* 内容主体 */
+#content {
+    background: url('image/background.jpg') no-repeat;
+    background-size: cover;
+    position: relative;
+    cursor: pointer;
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    -webkit-user-select: none;
+}
+/* 音乐按钮css */
+#content #audio_button {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    z-index: 200;
+    width: 30px;
+    height: 30px;    
+    background-image: url(image/normalmusic.svg);
+    background-size: contain;
+    background-repeat: no-repeat;
+    
+}
+/* 音符旋转css */
+.rotate {
+    /* -webkit-animation: rotating 1.2s linear infinite; */
+    -moz-animation: rotating 1.2s linear infinite;
+    -o-animation: rotating 1.2s linear infinite;
+    animation: rotating 1.2s linear infinite;
+}
+@keyframes rotating{
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+#content #page{
+    height: 100%;
+}
+.content_page{
+    display: none;
+    border: 1px;
+}
+.current_page{
+    display: block;
+    height: 80%;
+    position: relative;
+    z-index: 100;
+}
+/* 换页按键css */
+#turn_page_arrow {
+    position: absolute;
+    bottom: 5%;
+    left: 50%;
+    margin-left: -20px;
+    width: 40px;
+    text-align: center;
+    z-index: 900;
+    animation-name: arrowing;
+    -webkit-animation-name: arrowing;
+    animation-duration: 1.5s;
+    -webkit-animation-duration: 1.5s;
+    animation-iteration-count: infinite;
+    -webkit-animation-iteration-count: infinite;
+}
+
+@keyframes arrowing{
+    0% {
+        transform: translateY(-5px);
+        opacity: 0.8;
+    }
+    
+    50% {
+        transform: translateY(10px);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-5px);
+        opacity: 0.8;
+    }
+}
+/* 第1页css */
+#page1.current_page #page1_img1{
+    position: relative;
+    display: block;
+    width: 70%;
+    margin: 0 auto;
+    animation: cut_in_from_up 2s;
+}
+@keyframes cut_in_from_up{
+    0%{
+        transform: translateY(-900px);
+        opacity: 0;
+    }
+    100%{
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+#page1.current_page #page1_text2{
+    width: 70%;
+    font-size: 18px;
+    color: white;
+    text-align: right;
+    margin: 0 auto;
+    animation: cut_in_from_right 2s;
+}
+@keyframes cut_in_from_right{
+    0%{
+        transform: translateX(900px);
+        opacity: 0;
+    }
+    100%{
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+#page1.current_page #page1_img3{
+    position: relative;
+    display: block;
+    width: 80%;
+    border: 10px solid #000;
+    border-radius: 20px;
+    margin: 0 auto;
+    animation: cut_in_from_left 2s ;
+}
+@keyframes cut_in_from_left{
+    0%{
+        transform: translateX(-900px);
+        opacity: 0;
+    }
+    100%{
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* 第2页css */
+.in2 {
+    animation: fade_in 3s;
+}
+@keyframes fade_in{
+    0%{
+        opacity: 0.6;
+    }
+    100%{
+        opacity: 1;
+    }
+}
+#page2 #page2_img1{
+    position: relative;
+    display: block;
+    width: 70%;
+    margin: 0 auto;
+}
+.in2 #page2_img1{
+    animation: cut_in_from_left 2s;
+}
+#page2 #page2_img2{
+    position: relative;
+    display: block;
+    width: 90%;
+    border: 10px solid #000;
+    border-radius: 20px;
+    margin: 0 auto;
+}
+.in2 #page2_img2{
+    animation: cut_in_from_right 2s;
+}
+
+/* 第3页css */
+.in3 {
+    animation: fade_in 3s;
+}
+#page3 #page3_img1{
+    position: relative;
+    display: block;
+    width: 70%;
+    margin: 0 auto;
+}
+.in3 #page3_img1{
+    animation: cut_in_from_right 2s;
+}
+.in3 .rotate_in{
+    animation: rotating 2s;
+}
+#page3 #page3_box{
+    position: relative;
+    width: 360px;
+    height: 200px;
+    border:10px solid #000;
+    margin: 0 auto;
+}
+#page3 #page3_box::after{
+    clear: both;
+}
+#page3 .rotate_in{
+    float: left;
+    position: relative;
+    display: block;
+    width: 120px;
+    height: 100px;
+    margin: 0 auto;
+}
+#page3 .rotate_in::after{
+    clear: both;
+}
+
+/* 第4页css */
+.in4{
+    animation: fade_in 4s;
+}
+#page4 #page4_img1{
+    position: relative;
+    display: block;
+    width: 70%;
+    margin: 0 auto;
+}
+.in4 #page4_img1{
+    animation: cut_in_from_left 3s -1s;
+}
+#page4 #page4_img2 , #page4 #page4_img3{
+    display: block;
+    position: relative;
+    width: 360px;
+    height: 200px;
+    border:10px solid #000;
+    margin: 0 auto;
+}
+.in4 #page4_img2{
+    animation: cut_in_from_left 3s -0.5s;
+}
+.in4 #page4_img3{
+    animation: cut_in_from_left 3s;
+}
+
+
+
+/* 第5页css */
+.in5{
+    animation: in 1.5s;
+    -webkit-animation: in 1.5s;
+}
+@keyframes in {
+    0% {
+        transform: translateY(600px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0px);
+        opacity: 1;
+    }
+}
+#map_caption{
+    display: block!important;
+    position: relative;
+    height: 40px;
+    line-height: 40px;
+    color: rgb(255, 0, 0);
+    text-align: center;
+}
+.in5 #map_caption{
+    animation: map_caption_in 1.5s;
+    -webkit-animation: map_caption_in 1.5s;
+}
+@keyframes map_caption_in {
+    0% {
+        transform: scale(6);
+    }
+    100%{
+        transform: scale(1);
+    }
+}
+#map_container{
+    display: block!important;
+    position: relative;
+    width:300px;
+    min-height:200px;
+    border: 10px solid #000;
+    border-radius: 20px;
+    margin: 0 auto;
+}
+#text_below_map{
+    display: block!important;
+    position: relative;
+    color: #fff;
+    width:300px;
+    text-align: center;
+    margin: 0 auto;
+}
+.in3 #text_below_map{
+    animation: text_below_map_in 1.5s;
+    -webkit-animation: text_below_map_in 1.5s;
+}
+@keyframes text_below_map_in{
+    0%{
+        transform: scale3d(.9, .9, .9);
+        opacity: 0;
+    }
+    100%{
+        transform: scale3d(1, 1, 1);
+        opacity: 1;
+    }
+}
